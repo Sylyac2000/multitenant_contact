@@ -2,10 +2,10 @@
 from django.db import models
 from django.contrib.auth.models import User
 
-from tenants.models import TenantAwareModel
 
 
-class Contact(TenantAwareModel):
+
+class Contact(models.Model):
     """Contact model."""
     nom = models.CharField(max_length=100)
     prenom = models.CharField(max_length=100)
@@ -17,7 +17,7 @@ class Contact(TenantAwareModel):
         return self.nom + ' ' + self.prenom
 
 
-class Adresse(TenantAwareModel):
+class Adresse(models.Model):
     """Adresse model for the address of a contact."""
     contact = models.OneToOneField(Contact, on_delete=models.CASCADE)
     commune = models.CharField(max_length=100)

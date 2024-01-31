@@ -2,6 +2,8 @@
 import os
 import sys
 
+from tenants.middlewares.middlewares import set_db_for_router
+
 if __name__ == "__main__":
     os.environ.setdefault("DJANGO_SETTINGS_MODULE", "contact.settings")
     try:
@@ -15,10 +17,8 @@ if __name__ == "__main__":
     from django.db import connection
 
     args = sys.argv
-    schema = args[1]
+    db = args[1]
     with connection.cursor() as cursor:
-
-        cursor.execute(f"SET search_path to {schema}")
-
+        set_db_for_router(db)
         del args[1]
         execute_from_command_line(args)

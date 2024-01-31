@@ -81,3 +81,17 @@ py .\manage.py runserver -h contact.ci
 ==============================================
 custom admin to manage tenants
 python .\tenant_context_manage.py astc createsuperuser
+
+======================================================
+for isolated database tenant:
+python manage.py migrate --database=ita_db
+
+for the default database:
+`python manage.py migrate --database=default`
+
+* don't forget to create database `ita_db`
+* for creating superuser
+
+python tenant_context_manage.py ita_db createsuperuser --database=ita_db
+
+python tenant_context_manage.py ita_db createsuperuser --database=default
